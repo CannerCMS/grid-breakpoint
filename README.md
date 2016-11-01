@@ -7,6 +7,12 @@
 $ npm install --save grid-breakpoint
 ```
 
+## Problem
+
+Grid is great! But one big problem in grid is when you have a list of grid, and it's height is different, your grid will break easily.
+
+`grid-breakpoint` automatically calculate and wrapped `Row` for `Col`!
+
 ## Usage
 
 ```js
@@ -14,18 +20,18 @@ import React, {Component} from 'react';
 import GridBreakPoint from 'grid-breakpoint';
 
 class GridExample extends Component {
-	render() {
+  render() {
     const list = range(20).map((col, i) => {
       return <div key={i}>{col}</div>;
     });
 
-		return (
-			<GridBreakpoint lg={4} md={3} xs={3} xsOffset={3}
+    return (
+      <GridBreakpoint lg={4} md={3} xs={3} xsOffset={3}
         rowClassName="row-test" colClassName="col-test">
         {list}
       </GridBreakpoint>
-		);
-	}
+    );
+  }
 }
 
 ```
