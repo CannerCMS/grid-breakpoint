@@ -38,7 +38,7 @@ class GridBreakpointExample extends Component {
               {list}
             </GridBreakpoint>
           ) : (
-            <GridBreakpoint md={6} xs={4}
+            <GridBreakpoint md={3} xs={4} mdOffset={3}
               rowClassName="row-test" colClassName="col-test">
               {list2}
             </GridBreakpoint>

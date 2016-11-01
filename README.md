@@ -20,7 +20,7 @@ class GridExample extends Component {
     });
 
 		return (
-			<GridBreakpoint lg={4} md={3} xs={6}
+			<GridBreakpoint lg={4} md={3} xs={3} xsOffset={3}
         rowClassName="row-test" colClassName="col-test">
         {list}
       </GridBreakpoint>
