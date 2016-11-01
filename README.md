@@ -15,11 +15,15 @@ import GridBreakPoint from 'grid-breakpoint';
 
 class GridExample extends Component {
 	render() {
+    const list = range(20).map((col, i) => {
+      return <div key={i}>{col}</div>;
+    });
+
 		return (
-			<GridBreakPoint>
-				<div>1</div>
-				<div>2</div>
-			</GridBreakPoint>
+			<GridBreakpoint lg={4} md={3} xs={6}
+        rowClassName="row-test" colClassName="col-test">
+        {list}
+      </GridBreakpoint>
 		);
 	}
 }
@@ -34,7 +38,7 @@ node devServer.js
 
 ## License
 
-MIT © [chilijung]()
+MIT © [Canner](https://github.com/canner)
 
 
 [npm-image]: https://badge.fury.io/js/grid-breakpoint.svg
