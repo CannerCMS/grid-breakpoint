@@ -66,8 +66,7 @@
     "validate": "npm ls"
   },
   "pre-commit": [
-    "lint",
-    "test"
+    "lint"
   ],
   "repository": "Canner/grid-breakpoint",
   "peerDependencies": {
