@@ -27,8 +27,28 @@ class GridExample extends Component {
       return <div key={i}>{col}</div>;
     });
 
+    // in this example, when the screen width is large(lg)
+    // it'll wrap <Col/> as structure below
+    // <Row> ---> automaticlly wrapped
+    //   <Col/>
+    //   <Col/>
+    //   <Col/>
+    // </Row>
+
+    // in md screen
+    // <Row> ---> automaticlly wrapped
+    //   <Col/>
+    //   <Col/>
+    // </Row>
+
+    // in xs screen (xs + xsOffset = 6)
+    // <Row> ---> automaticlly wrapped
+    //   <Col/>
+    //   <Col/>
+    // </Row>
+
     return (
-      <GridBreakpoint lg={4} md={3} xs={3} xsOffset={3}
+      <GridBreakpoint lg={4} md={6} xs={3} xsOffset={3}
         rowClassName="row-test" colClassName="col-test">
         {list}
       </GridBreakpoint>
