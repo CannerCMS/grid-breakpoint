@@ -1,4 +1,4 @@
-import React, {Component, PropTypes, Children} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Grid, Col, Row} from '@chilijung/react-flexbox-grid/lib/index';
 import {chunk} from 'lodash';
 import defaultScreenSize from './static';
@@ -10,7 +10,6 @@ export default class GridBreakpoint extends Component {
 
     this.updateDimensions = this.updateDimensions.bind(this);
     this.state = {
-      children: Children.toArray(props.children),
       currentSize: null
     };
   }
@@ -41,11 +40,7 @@ export default class GridBreakpoint extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    this.updateDimensions(null, nextProps, () => {
-      this.setState({
-        children: Children.toArray(nextProps.children)
-      });
-    });
+    this.updateDimensions(null, nextProps);
   }
 
   updateDimensions(e, props, cb = noop) {
@@ -103,9 +98,10 @@ export default class GridBreakpoint extends Component {
       smOffset,
       xsOffset,
       rowClassName,
-      colClassName
+      colClassName,
+      children
     } = this.props;
-    const {children, currentSize} = this.state;
+    const {currentSize} = this.state;
     let screenGrid;
 
     if (currentSize === 'lg') {
