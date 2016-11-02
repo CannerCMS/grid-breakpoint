@@ -1,5 +1,5 @@
 import React, {Component, PropTypes, Children} from 'react';
-import {Grid, Col, Row} from '@canner/react-flexbox-grid/lib/index';
+import {Grid, Col, Row} from '@chilijung/react-flexbox-grid/lib/index';
 import {chunk} from 'lodash';
 import defaultScreenSize from './static';
 const noop = arg => arg;
