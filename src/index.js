@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {Grid, Col, Row} from '@chilijung/react-flexbox-grid/lib/index';
+import {Col, Row} from '@chilijung/react-flexbox-grid/lib/index';
 import {chunk} from 'lodash';
 import defaultScreenSize from './static';
 const noop = arg => arg;
@@ -120,31 +120,29 @@ export default class GridBreakpoint extends Component {
 
     return (
       <div>
-        <Grid>
-          {
-            gridChunk.map((chunk, rowIndex) => {
-              const colChunk = chunk.map((item, colIndex) =>
-                React.createElement(Col, {
-                  lg,
-                  md,
-                  sm,
-                  xs,
-                  lgOffset,
-                  mdOffset,
-                  smOffset,
-                  xsOffset,
-                  key: colIndex,
-                  className: colClassName
-                }, item)
-              );
+        {
+          gridChunk.map((chunk, rowIndex) => {
+            const colChunk = chunk.map((item, colIndex) =>
+              React.createElement(Col, {
+                lg,
+                md,
+                sm,
+                xs,
+                lgOffset,
+                mdOffset,
+                smOffset,
+                xsOffset,
+                key: colIndex,
+                className: colClassName
+              }, item)
+            );
 
-              return React.createElement(Row, {
-                key: rowIndex,
-                className: rowClassName
-              }, colChunk);
-            })
-          }
-        </Grid>
+            return React.createElement(Row, {
+              key: rowIndex,
+              className: rowClassName
+            }, colChunk);
+          })
+        }
         {/* dummy div to know 1em equals how many px */}
         <div ref={
           node => {
