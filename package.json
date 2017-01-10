@@ -1,6 +1,6 @@
 {
   "name": "grid-breakpoint",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "grid auto add breaking-point",
   "homepage": "",
   "author": {
@@ -75,7 +75,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@chilijung/react-flexbox-grid": "^0.10.5",
-    "lodash": "^4.16.6"
+    "lodash": "^4.16.6",
+    "react-flexbox-grid": "^0.10.2"
   }
 }
