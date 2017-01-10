@@ -28,6 +28,11 @@ module.exports = function(config) {
             test: /\.js$/,
             loaders: ['babel'],
             exclude: path.resolve(__dirname, "node_modules")
+          },
+          {
+            test: /\.css$/,
+            loader: 'style!css?modules',
+            include: /flexboxgrid/
           }
         ]
       },
