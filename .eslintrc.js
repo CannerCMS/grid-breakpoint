@@ -22,5 +22,8 @@ module.exports = {
       pragma: "React",  // Pragma to use, default to "React"
       version: "15.3.1"
     }
+  },
+  rules: {
+    "new-cap": [2, {capIsNewExceptions: ["CSSModules", "Dimensions"]}]
   }
 };

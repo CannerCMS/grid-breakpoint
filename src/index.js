@@ -2,12 +2,14 @@ import React, {Component, PropTypes} from 'react';
 import {Col, Row} from 'react-flexbox-grid/lib/index';
 import {chunk} from 'lodash';
 import defaultScreenSize from './static';
-const noop = arg => arg;
+import Dimensions from 'react-dimensions';
 
+@Dimensions()
 export default class GridBreakpoint extends Component {
   constructor(props) {
     super(props);
 
+    this.whichSize = this.whichSize.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
     this.state = {
       currentSize: null
@@ -18,6 +20,7 @@ export default class GridBreakpoint extends Component {
     children: PropTypes.any,
     rowClassName: PropTypes.string,
     colClassName: PropTypes.string,
+    containerWidth: PropTypes.number,
     lg: PropTypes.number,
     md: PropTypes.number,
     sm: PropTypes.number,
@@ -39,38 +42,30 @@ export default class GridBreakpoint extends Component {
     xsOffset: null
   };
 
-  componentWillReceiveProps(nextProps) {
-    this.updateDimensions(null, nextProps);
-  }
-
-  updateDimensions(e, props, cb = noop) {
-    const width = window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-
-    const currentEmWidth = width / this.defaultFontSize;
-    const currentSize = this.whichSize(currentEmWidth, props);
-    this.setState({
-      currentSize
-    }, cb);
-  }
-
   componentDidMount() {
-    window.addEventListener("resize",
-      e => this.updateDimensions(e, this.props));
     this.defaultFontSize = this.dummyDiv.offsetHeight;
-    this.updateDimensions(null, this.props);
+    this.updateDimensions(this.props);
+
     // remove dummy div when we know the default fontsize of 1em
     this.dummyDiv.remove();
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions);
+  componentWillReceiveProps(nextProps) {
+    this.updateDimensions(nextProps);
   }
 
-  whichSize(em, props) {
-    const {lg, md, sm, xs} = props;
-    if (em >= defaultScreenSize.lg && lg) {
+  updateDimensions(props) {
+    const {containerWidth} = props;
+    const currentEmWidth = containerWidth / this.defaultFontSize;
+    const currentSize = this.whichSize(currentEmWidth);
+
+    this.setState({currentSize});
+  }
+
+  whichSize(em) {
+    const {lg, md, sm, xs} = this.props;
+    if (em >= defaultScreenSize.lg &&
+      lg) {
       return 'lg';
     } else if (
       em >= defaultScreenSize.md &&
