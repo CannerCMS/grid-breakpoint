@@ -57,13 +57,13 @@ export default class GridBreakpoint extends Component {
   updateDimensions(props) {
     const {containerWidth} = props;
     const currentEmWidth = containerWidth / this.defaultFontSize;
-    const currentSize = this.whichSize(currentEmWidth);
+    const currentSize = this.whichSize(currentEmWidth, props);
 
     this.setState({currentSize});
   }
 
-  whichSize(em) {
-    const {lg, md, sm, xs} = this.props;
+  whichSize(em, props) {
+    const {lg, md, sm, xs} = props;
     if (em >= defaultScreenSize.lg &&
       lg) {
       return 'lg';
