@@ -70,13 +70,13 @@ class GridContainer extends Component {
   updateDimensions(props) {
     const {containerWidth} = props;
     const currentSize = this.whichSize(containerWidth, props);
-
     this.setState({currentSize});
   }
 
   whichSize(px, props) {
     const {lg, md, sm, xs} = props;
-    if (px <= defaultScreenSize.xs &&
+    if (
+      px <= defaultScreenSize.xs &&
       xs) {
       return 'xs';
     } else if (
@@ -89,8 +89,6 @@ class GridContainer extends Component {
       return 'md';
     } else if (lg) {
       return 'lg';
-    } else if (this.state.currentSize) {
-      return this.state.currentSize;
     } else if (md) {
       return 'md';
     } else if (sm) {
