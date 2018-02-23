@@ -1,11 +1,28 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Col, Row} from 'react-flexbox-grid/lib/index';
 import {chunk} from 'lodash';
 import defaultScreenSize from './static';
-import Dimensions from 'react-dimensions';
+import Dimensions from 'react-container-dimensions';
 
-@Dimensions()
 export default class GridBreakpoint extends Component {
+  render() {
+    return (
+      <Dimensions>
+        {
+          ({height, width}) => (
+            <GridContainer
+              {...this.props}
+              containerHeight={height}
+              containerWidth={width}/>
+          )
+        }
+      </Dimensions>
+    );
+  }
+}
+
+class GridContainer extends Component {
   constructor(props) {
     super(props);
 
@@ -115,29 +132,6 @@ export default class GridBreakpoint extends Component {
 
     return (
       <div>
-        {
-          gridChunk.map((chunk, rowIndex) => {
-            const colChunk = chunk.map((item, colIndex) =>
-              React.createElement(Col, {
-                lg,
-                md,
-                sm,
-                xs,
-                lgOffset,
-                mdOffset,
-                smOffset,
-                xsOffset,
-                key: colIndex,
-                className: colClassName
-              }, item)
-            );
-
-            return React.createElement(Row, {
-              key: rowIndex,
-              className: rowClassName
-            }, colChunk);
-          })
-        }
         {/* dummy div to know 1em equals how many px */}
         <div ref={
           node => {
@@ -145,6 +139,31 @@ export default class GridBreakpoint extends Component {
           }}
           style={{height: '1em', width: 0}}
         />
+        {gridChunk.map((chunk, rowIndex) => {
+          const colChunk = chunk.map((item, colIndex) =>
+            <Col
+              lg={lg}
+              md={md}
+              sm={sm}
+              xs={xs}
+              lgOffset={lgOffset}
+              mdOffset={mdOffset}
+              smOffset={smOffset}
+              xsOffset={xsOffset}
+              key={colIndex}
+              className={colClassName}>
+              {item}
+            </Col>
+          );
+
+          return (
+            <Row
+              key={rowIndex}
+              className={rowClassName}>
+              {colChunk}
+            </Row>
+          );
+        })}
       </div>
     );
   }
