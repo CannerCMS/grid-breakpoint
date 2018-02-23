@@ -33,15 +33,21 @@ class GridBreakpointExample extends Component {
         <button onClick={this.changeData}>re-render data</button>
         {
           this.state.toggle ? (
-            <GridBreakpoint lg={4} md={3} xs={6}
-              rowClassName="row-test" colClassName="col-test">
-              {list}
-            </GridBreakpoint>
+            <div>
+              <div>lg=4, md=3, xs=6</div>
+              <GridBreakpoint lg={4} md={3} xs={6}
+                rowClassName="row-test" colClassName="col-test">
+                {list}
+              </GridBreakpoint>
+            </div>
           ) : (
-            <GridBreakpoint md={3} xs={4} mdOffset={3}
-              rowClassName="row-test" colClassName="col-test">
-              {list2}
-            </GridBreakpoint>
+            <div>
+              <div>md=3, mdOffset=3, xs=4</div>
+              <GridBreakpoint md={3} xs={4} mdOffset={3}
+                rowClassName="row-test" colClassName="col-test">
+                {list2}
+              </GridBreakpoint>
+            </div>
           )
         }
       </div>

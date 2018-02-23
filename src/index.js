@@ -60,11 +60,7 @@ class GridContainer extends Component {
   };
 
   componentDidMount() {
-    this.defaultFontSize = this.dummyDiv.offsetHeight;
     this.updateDimensions(this.props);
-
-    // remove dummy div when we know the default fontsize of 1em
-    this.dummyDiv.remove();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -73,30 +69,35 @@ class GridContainer extends Component {
 
   updateDimensions(props) {
     const {containerWidth} = props;
-    const currentEmWidth = containerWidth / this.defaultFontSize;
-    const currentSize = this.whichSize(currentEmWidth, props);
+    const currentSize = this.whichSize(containerWidth, props);
 
     this.setState({currentSize});
   }
 
-  whichSize(em, props) {
+  whichSize(px, props) {
     const {lg, md, sm, xs} = props;
-    if (em >= defaultScreenSize.lg &&
-      lg) {
-      return 'lg';
+    if (px <= defaultScreenSize.xs &&
+      xs) {
+      return 'xs';
     } else if (
-      em >= defaultScreenSize.md &&
+      px <= defaultScreenSize.sm &&
+      sm) {
+      return 'sm';
+    } else if (
+      px <= defaultScreenSize.md &&
       md) {
       return 'md';
-    } else if (
-      em >= defaultScreenSize.sm &&
-      sm) {
+    } else if (lg) {
+      return 'lg';
+    } else if (this.state.currentSize) {
+      return this.state.currentSize;
+    } else if (md) {
+      return 'md';
+    } else if (sm) {
       return 'sm';
     } else if (xs) {
       return 'xs';
     }
-
-    return this.state.currentSize;
   }
 
   render() {
@@ -113,7 +114,7 @@ class GridContainer extends Component {
       colClassName,
       children
     } = this.props;
-    const {currentSize} = this.state;
+    let {currentSize} = this.state;
     let screenGrid;
 
     if (currentSize === 'lg') {
@@ -132,13 +133,6 @@ class GridContainer extends Component {
 
     return (
       <div>
-        {/* dummy div to know 1em equals how many px */}
-        <div ref={
-          node => {
-            this.dummyDiv = node;
-          }}
-          style={{height: '1em', width: 0}}
-        />
         {gridChunk.map((chunk, rowIndex) => {
           const colChunk = chunk.map((item, colIndex) =>
             <Col
