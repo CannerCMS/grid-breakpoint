@@ -1,7 +1,7 @@
 {
   "name": "grid-breakpoint",
   "version": "1.2.1",
-  "description": "grid auto add breaking-point",
+  "description": "Automatically add breakpoints to your grid",
   "author": {
     "name": "chilijung",
     "email": "chilijung@gmail.com"
