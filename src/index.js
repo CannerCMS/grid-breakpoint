@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import {Col, Row} from 'react-flexbox-grid/lib/index';
-import {chunk} from 'lodash';
+import chunk from 'lodash.chunk';
 import defaultScreenSize from './static';
 import Dimensions from 'react-container-dimensions';
 
