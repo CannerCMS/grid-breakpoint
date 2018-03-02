@@ -7,9 +7,9 @@
 $ npm install --save grid-breakpoint
 ```
 
-## Problem
+## Problem in writing grids
 
-Grid is great! But one big problem in grid is when you have a big list of columns, you can not just push all the columns into a row.  If the containers have different height, your items will not display as you expected.
+Grid is great! But one big commonly problem in writing grids is when you have a big list of columns, you can't just push all the columns into a row.  If the containers have different height, your items will end up displaying unexpected.
 
 So let's turn
 
@@ -26,7 +26,7 @@ So let's turn
 </Row>
 ```
 
-to 
+to automatically
 
 ```
 <Row>

@@ -5,7 +5,7 @@ import chunk from 'lodash.chunk';
 import defaultScreenSize from './static';
 import Dimensions from 'react-container-dimensions';
 
-type GridBreakpointProps = {
+type GridBpProps = {
   rowClassName?: string,
   colClassName?: string,
   lg?: number,
@@ -19,12 +19,12 @@ type GridBreakpointProps = {
   children: React.ChildrenArray<React.Element<*>>
 }
 
-type GridContainerProps = GridBreakpointProps & {
+type GridContainerProps = GridBpProps & {
   containerHeight: number,
   containerWidth: number
 }
 
-export default class GridBreakpoint extends React.Component<GridBreakpointProps> {
+export default class GridBreakpoint extends React.Component<GridBpProps> {
   render() {
     return (
       <Dimensions>
