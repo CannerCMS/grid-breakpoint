@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
   entry: './docs/index.js',
@@ -18,10 +17,6 @@ module.exports = {
   resolveLoader: {
     moduleExtensions: ["-loader"]
   },
-  plugins: [
-    new webpack.BannerPlugin('This file is created by chilijung. Built time: ' + // eslint-disable-line max-len
-      new Date())
-  ],
   module: {
     rules: [
       {
