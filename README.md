@@ -1,5 +1,5 @@
 # grid-breakpoint [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> grid auto add breaking-point
+> Automatically add breakpoints to your grid (This project is build on top of `flexboxgrid`, which is a 12 column grid system).
 
 ## Installation
 
@@ -9,9 +9,49 @@ $ npm install --save grid-breakpoint
 
 ## Problem
 
-Grid is great! But one big problem in grid is when you have a list of grid, and it's height is different, your grid will break easily.
+Grid is great! But one big problem in grid is when you have a big list of columns, you can not just push all the columns into a row.  If the containers have different height, your items will not display as you expected.
 
-`grid-breakpoint` automatically calculate and wrapped `Row` for `Col`!
+So let's turn
+
+```
+<Row>
+  <Col span={6}/>
+  <Col span={6}/>
+  <Col span={6}/>
+  <Col span={6}/>
+  <Col span={6}/>
+  <Col span={6}/>
+  <Col span={6}/>
+  {....}
+</Row>
+```
+
+to 
+
+```
+<Row>
+  <Col span={6}/>
+  <Col span={6}/>
+</Row>
+<Row>
+  <Col span={6}/>
+  <Col span={6}/>
+</Row>
+<Row>
+  <Col span={6}/>
+  <Col span={6}/>
+</Row>
+<Row>
+  <Col span={6}/>
+  <Col span={6}/>
+</Row>
+<Row>
+  <Col span={6}/>
+  <Col span={6}/>
+</Row>
+```
+
+`grid-breakpoint` automatically calculate how many columns should in a row and wrapped `<Row/>` for `<Col/>`!
 
 ## Usage
 
@@ -73,7 +113,7 @@ class GridExample extends Component {
 ## Start example server
 
 ```
-node devServer.js
+npm start
 ```
 
 ## License
