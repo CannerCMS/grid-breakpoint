@@ -1,8 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval-source-map',
   entry: './docs/index.js',
   output: {
     path: path.join(__dirname, 'docs/static'),
@@ -14,33 +13,35 @@ module.exports = {
     'react-dom': "ReactDOM"
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
+  },
+  resolveLoader: {
+    moduleExtensions: ["-loader"]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("production")
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      include: /\.min\.js$/,
-      compress: {
-        warnings: true
-      }
-    }),
     new webpack.BannerPlugin('This file is created by chilijung. Built time: ' + // eslint-disable-line max-len
       new Date())
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
+        use: 'babel',
         exclude: path.resolve(__dirname, "node_modules")
       },
       {
         test: /\.css$/,
-        loader: 'style!css?modules',
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          }
+        ],
         include: /flexboxgrid/
       }
     ]

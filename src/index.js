@@ -1,11 +1,30 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
 import {Col, Row} from 'react-flexbox-grid/lib/index';
 import {chunk} from 'lodash';
 import defaultScreenSize from './static';
 import Dimensions from 'react-container-dimensions';
 
-export default class GridBreakpoint extends Component {
+type GridBreakpointProps = {
+  rowClassName?: string,
+  colClassName?: string,
+  lg?: number,
+  md?: number,
+  sm?: number,
+  xs?: number,
+  lgOffset?: number,
+  mdOffset?: number,
+  smOffset?: number,
+  xsOffset?: number,
+  children: React.ChildrenArray<React.Element<*>>
+}
+
+type GridContainerProps = GridBreakpointProps & {
+  containerHeight: number,
+  containerWidth: number
+}
+
+export default class GridBreakpoint extends React.Component<GridBreakpointProps> {
   render() {
     return (
       <Dimensions>
@@ -22,32 +41,18 @@ export default class GridBreakpoint extends Component {
   }
 }
 
-class GridContainer extends Component {
+class GridContainer extends React.Component<GridContainerProps, {
+  currentSize: ?string
+}> {
   constructor(props) {
     super(props);
 
-    this.whichSize = this.whichSize.bind(this);
-    this.updateDimensions = this.updateDimensions.bind(this);
+    (this: any).whichSize = this.whichSize.bind(this);
+    (this: any).updateDimensions = this.updateDimensions.bind(this);
     this.state = {
       currentSize: null
     };
   }
-
-  static propTypes = {
-    children: PropTypes.any,
-    rowClassName: PropTypes.string,
-    colClassName: PropTypes.string,
-    containerWidth: PropTypes.number,
-    lg: PropTypes.number,
-    md: PropTypes.number,
-    sm: PropTypes.number,
-    xs: PropTypes.number,
-    lgOffset: PropTypes.number,
-    mdOffset: PropTypes.number,
-    smOffset: PropTypes.number,
-    xsOffset: PropTypes.number
-  };
-
   static defaultProps = {
     lg: null,
     md: null,
@@ -73,7 +78,7 @@ class GridContainer extends Component {
     this.setState({currentSize});
   }
 
-  whichSize(px, props) {
+  whichSize(px, props): string {
     const {lg, md, sm, xs} = props;
     if (
       px <= defaultScreenSize.xs &&
@@ -95,7 +100,11 @@ class GridContainer extends Component {
       return 'sm';
     } else if (xs) {
       return 'xs';
+    } else if (this.state.currentSize) {
+      return this.state.currentSize;
     }
+
+    return 'lg';
   }
 
   render() {
@@ -113,7 +122,7 @@ class GridContainer extends Component {
       children
     } = this.props;
     let {currentSize} = this.state;
-    let screenGrid;
+    let screenGrid: number = 12;
 
     if (currentSize === 'lg') {
       screenGrid = lg + lgOffset;

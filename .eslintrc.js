@@ -24,6 +24,7 @@ module.exports = {
     }
   },
   rules: {
-    "new-cap": [2, {capIsNewExceptions: ["CSSModules", "Dimensions"]}]
+    "new-cap": [2, {capIsNewExceptions: ["CSSModules", "Dimensions"]}],
+    "react/prop-types": 0
   }
 };
