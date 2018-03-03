@@ -1,4 +1,6 @@
 # grid-breakpoint [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Canner/grid-breakpoint.svg)](https://greenkeeper.io/)
 > Automatically add breakpoints to your grid (This project is build on top of `flexboxgrid`, which is a 12 column grid system).
 
 ## Installation
