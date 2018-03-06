@@ -4,8 +4,10 @@ import {Col, Row} from 'react-flexbox-grid/lib/index';
 import chunk from 'lodash.chunk';
 import defaultScreenSize from './static';
 import Dimensions from 'react-container-dimensions';
+import WindowDimensions from 'react-window-dimensions';
 
 type GridBpProps = {
+  detectContainerWidth?: boolean,
   rowClassName?: string,
   colClassName?: string,
   lg?: number,
@@ -26,8 +28,25 @@ type GridContainerProps = GridBpProps & {
 
 export default class GridBreakpoint extends React.Component<GridBpProps> {
   render() {
+    const {detectContainerWidth} = this.props;
+
+    if (detectContainerWidth) {
+      return (
+        <Dimensions>
+          {
+            ({height, width}) => (
+              <GridContainer
+                {...this.props}
+                containerHeight={height}
+                containerWidth={width}/>
+            )
+          }
+        </Dimensions>
+      );
+    }
+
     return (
-      <Dimensions>
+      <WindowDimensions>
         {
           ({height, width}) => (
             <GridContainer
@@ -36,7 +55,7 @@ export default class GridBreakpoint extends React.Component<GridBpProps> {
               containerWidth={width}/>
           )
         }
-      </Dimensions>
+      </WindowDimensions>
     );
   }
 }

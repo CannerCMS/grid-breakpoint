@@ -100,8 +100,14 @@ class GridExample extends Component {
     // </Row>
 
     return (
-      <GridBreakpoint lg={4} md={6} xs={3} xsOffset={3}
-        rowClassName="row-test" colClassName="col-test">
+      <GridBreakpoint
+        lg={4}
+        md={6}
+        xs={3}
+        xsOffset={3}
+        detectContainerWidth={true} // whether detect container width or not, if not will detect window width.
+        rowClassName="row-test"
+        colClassName="col-test">
         {list}
       </GridBreakpoint>
     );
