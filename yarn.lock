@@ -6407,9 +6407,9 @@ react-flexbox-grid@^2.0.0:
     flexboxgrid2 "^7.0.0-alpha7"
     prop-types "^15.5.8"
 
-react-window-detect-dimensions@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/react-window-detect-dimensions/-/react-window-detect-dimensions-0.1.0.tgz#43e761446949b66e8937ea3fe7dea6a60c67cfa0"
+react-window-detect-dimensions@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-window-detect-dimensions/-/react-window-detect-dimensions-0.2.0.tgz#ab5bb7f4b6e68813ef1c89598236f0d12cd3df51"
 
 react@^16.2.0:
   version "16.2.0"
