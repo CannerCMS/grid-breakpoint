@@ -6,8 +6,6 @@ import defaultScreenSize from './static';
 import Dimensions from 'react-container-dimensions';
 import WindowDimensions from 'react-window-detect-dimensions';
 
-import 'react-flexbox-grid/dist/react-flexbox-grid.css';
-
 type GridBpProps = {
   detectContainerWidth?: boolean,
   rowClassName?: string,

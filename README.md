@@ -57,9 +57,13 @@ to automatically
 
 And add to your component as below.
 
+**NOTICE: You need to import `react-flexbox-grid`'s css in order to let it work correctly**
+
 ```js
 import React, {Component} from 'react';
 import GridBreakPoint from 'grid-breakpoint';
+
+import 'react-flexbox-grid/dist/react-flexbox-grid.css';
 
 class GridExample extends Component {
   render() {
